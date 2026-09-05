@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Ishraq Saifi — Software Developer</title>
+  <title>Ishraq Saifi — Software Engineer</title>
 
   <!-- Fonts -->
   <link rel="preconnect" href="https://fonts.googleapis.com" />
@@ -20,13 +20,11 @@
   <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js"></script>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/ScrollTrigger.min.js"></script>
 
-  <!-- jsPDF for instant resume generation -->
+  <!-- jsPDF -->
   <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"></script>
 
   <style>
-    /* ============================================================
-       CSS VARIABLES & RESET
-    ============================================================ */
+    /* CSS Variables & Reset */
     :root {
       --bg: #000000;
       --bg-card: #0a0a0a;
@@ -45,10 +43,7 @@
 
     *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
 
-    html {
-      scroll-behavior: smooth;
-      overflow-x: hidden;
-    }
+    html { scroll-behavior: smooth; overflow-x: hidden; }
 
     body {
       background: var(--bg);
@@ -61,9 +56,7 @@
 
     ::selection { background: var(--accent); color: #000; }
 
-    /* ============================================================
-       SCROLL PROGRESS BAR
-    ============================================================ */
+    /* Scroll progress */
     #scroll-progress {
       position: fixed;
       top: 0; left: 0;
@@ -75,9 +68,7 @@
       box-shadow: 0 0 12px var(--accent-glow);
     }
 
-    /* ============================================================
-       NAVBAR
-    ============================================================ */
+    /* Navbar */
     .navbar {
       background: rgba(0, 0, 0, 0.85) !important;
       backdrop-filter: blur(18px);
@@ -85,14 +76,12 @@
       padding: 14px 0;
       transition: all 0.3s;
     }
-
     .navbar-brand {
       font-family: var(--font-display);
       font-size: 1.1rem;
       color: var(--accent) !important;
       letter-spacing: 0.04em;
     }
-
     .nav-link {
       font-family: var(--font-mono);
       font-size: 0.78rem;
@@ -103,7 +92,6 @@
       position: relative;
       transition: color 0.25s;
     }
-
     .nav-link::after {
       content: '';
       position: absolute;
@@ -114,12 +102,10 @@
       transform-origin: left;
       transition: transform 0.3s cubic-bezier(.4,0,.2,1);
     }
-
     .nav-link:hover { color: var(--accent) !important; }
     .nav-link:hover::after { transform: scaleX(1); }
     .nav-link.active { color: var(--accent) !important; }
     .nav-link.active::after { transform: scaleX(1); }
-
     .navbar-toggler {
       border: 1px solid var(--border);
       padding: 5px 8px;
@@ -128,9 +114,7 @@
       background-image: url("data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 30 30'%3e%3cpath stroke='%231DCD9F' stroke-linecap='round' stroke-miterlimit='10' stroke-width='2' d='M4 7h22M4 15h22M4 23h22'/%3e%3c/svg%3e");
     }
 
-    /* ============================================================
-       LOADING SCREEN
-    ============================================================ */
+    /* Loader */
     #loader {
       position: fixed;
       inset: 0;
@@ -142,12 +126,7 @@
       flex-direction: column;
       gap: 32px;
     }
-
-    .loader-name {
-      display: flex;
-      gap: 4px;
-    }
-
+    .loader-name { display: flex; gap: 4px; }
     .loader-letter {
       font-family: var(--font-display);
       font-size: clamp(2rem, 6vw, 4rem);
@@ -156,7 +135,6 @@
       transform: translateY(30px);
       display: inline-block;
     }
-
     .loader-bar-wrap {
       width: 200px;
       height: 2px;
@@ -164,7 +142,6 @@
       border-radius: 99px;
       overflow: hidden;
     }
-
     .loader-bar-fill {
       height: 100%;
       width: 0%;
@@ -174,9 +151,7 @@
       box-shadow: 0 0 10px var(--accent-glow);
     }
 
-    /* ============================================================
-       HERO
-    ============================================================ */
+    /* Hero */
     #hero {
       min-height: 100vh;
       position: relative;
@@ -185,7 +160,6 @@
       overflow: hidden;
       padding: 120px 0 80px;
     }
-
     #hero-canvas {
       position: absolute;
       inset: 0;
@@ -194,7 +168,6 @@
       opacity: 0.35;
       pointer-events: none;
     }
-
     .hero-badge {
       display: inline-flex;
       align-items: center;
@@ -210,19 +183,16 @@
       margin-bottom: 28px;
       text-transform: uppercase;
     }
-
     .hero-badge .pulse-dot {
       width: 7px; height: 7px;
       background: var(--accent);
       border-radius: 50%;
       animation: pulse-dot 1.6s ease-in-out infinite;
     }
-
     @keyframes pulse-dot {
       0%, 100% { transform: scale(1); opacity: 1; }
       50% { transform: scale(1.6); opacity: 0.5; }
     }
-
     .hero-heading {
       font-family: var(--font-display);
       font-size: clamp(2.8rem, 7vw, 6rem);
@@ -230,7 +200,6 @@
       color: #fff;
       margin-bottom: 16px;
     }
-
     .hero-heading .name-accent {
       background: linear-gradient(120deg, var(--accent) 0%, #6bf3d4 50%, var(--accent) 100%);
       background-size: 200% auto;
@@ -238,14 +207,9 @@
       background-clip: text;
       -webkit-text-fill-color: transparent;
       animation: shine 6s linear infinite;
-      position: relative;
       display: inline-block;
     }
-
-    @keyframes shine {
-      to { background-position: 200% center; }
-    }
-
+    @keyframes shine { to { background-position: 200% center; } }
     .hero-subtitle {
       font-family: var(--font-mono);
       font-size: clamp(0.9rem, 2vw, 1.1rem);
@@ -254,7 +218,6 @@
       text-transform: uppercase;
       margin-bottom: 24px;
     }
-
     .hero-desc {
       font-size: 1.05rem;
       color: var(--text-mid);
@@ -262,9 +225,7 @@
       margin-bottom: 40px;
       line-height: 1.8;
     }
-
     .hero-desc strong { color: var(--text); font-weight: 500; }
-
     .btn-hire {
       background: var(--accent);
       color: #000;
@@ -284,7 +245,6 @@
       position: relative;
       overflow: hidden;
     }
-
     .btn-hire::before {
       content: '';
       position: absolute;
@@ -293,14 +253,12 @@
       transform: translateX(-100%);
       transition: transform 0.35s;
     }
-
     .btn-hire:hover::before { transform: translateX(0); }
     .btn-hire:hover {
       color: #000;
       box-shadow: 0 0 28px var(--accent-glow);
       transform: translateY(-2px);
     }
-
     .btn-resume {
       background: transparent;
       color: var(--accent);
@@ -321,32 +279,24 @@
       overflow: hidden;
       cursor: pointer;
     }
-
-    .btn-resume .resume-icon {
-      animation: bounce-dl 1.8s ease-in-out infinite;
-    }
-
+    .btn-resume .resume-icon { animation: bounce-dl 1.8s ease-in-out infinite; }
     @keyframes bounce-dl {
       0%, 100% { transform: translateY(0); }
       40% { transform: translateY(4px); }
       60% { transform: translateY(-2px); }
     }
-
     .btn-resume:hover {
       background: var(--accent);
       color: #000;
       box-shadow: 0 0 22px var(--accent-glow);
       transform: translateY(-2px);
     }
-
     .btn-resume:hover .resume-icon { color: #000; }
-
     .social-icons {
       display: flex;
       gap: 16px;
       margin-top: 40px;
     }
-
     .social-icon {
       width: 44px; height: 44px;
       border: 1.5px solid var(--border);
@@ -360,7 +310,6 @@
       transition: all 0.28s;
       position: relative;
     }
-
     .social-icon::after {
       content: attr(data-tooltip);
       position: absolute;
@@ -379,12 +328,10 @@
       transition: all 0.2s;
       letter-spacing: 0.08em;
     }
-
     .social-icon:hover::after {
       opacity: 1;
       transform: translateX(-50%) translateY(0);
     }
-
     .social-icon:hover {
       border-color: var(--accent);
       color: var(--accent);
@@ -392,13 +339,11 @@
       transform: translateY(-4px);
       box-shadow: 0 8px 20px rgba(29, 205, 159, 0.2);
     }
-
     .hero-stats {
       display: flex;
       flex-direction: column;
       gap: 24px;
     }
-
     .stat-card {
       background: var(--bg-card);
       border: 1px solid var(--border);
@@ -408,7 +353,6 @@
       overflow: hidden;
       transition: transform 0.3s, border-color 0.3s;
     }
-
     .stat-card::before {
       content: '';
       position: absolute;
@@ -418,17 +362,14 @@
       opacity: 0;
       transition: opacity 0.3s;
     }
-
     .stat-card:hover::before { opacity: 1; }
     .stat-card:hover { transform: translateY(-3px); border-color: rgba(29, 205, 159, 0.4); }
-
     .stat-num {
       font-family: var(--font-display);
       font-size: 2.4rem;
       color: var(--accent);
       line-height: 1;
     }
-
     .stat-label {
       font-family: var(--font-mono);
       font-size: 0.72rem;
@@ -438,11 +379,8 @@
       margin-top: 6px;
     }
 
-    /* ============================================================
-       SECTIONS GENERAL
-    ============================================================ */
+    /* Sections */
     section { padding: 100px 0; }
-
     .section-label {
       font-family: var(--font-mono);
       font-size: 0.72rem;
@@ -451,7 +389,6 @@
       text-transform: uppercase;
       margin-bottom: 12px;
     }
-
     .section-title {
       font-family: var(--font-display);
       font-size: clamp(1.8rem, 4vw, 2.8rem);
@@ -459,7 +396,6 @@
       margin-bottom: 16px;
       line-height: 1.15;
     }
-
     .section-divider {
       width: 48px;
       height: 3px;
@@ -469,24 +405,19 @@
       box-shadow: 0 0 12px var(--accent-glow);
     }
 
-    /* ============================================================
-       ABOUT
-    ============================================================ */
+    /* About */
     #about {
       background: var(--bg-card);
       border-top: 1px solid var(--border);
       border-bottom: 1px solid var(--border);
     }
-
     .about-text {
       font-size: 1.02rem;
       color: var(--text-mid);
       line-height: 1.9;
       margin-bottom: 20px;
     }
-
     .about-text strong { color: var(--accent); }
-
     .about-pill {
       display: inline-flex;
       align-items: center;
@@ -501,21 +432,18 @@
       letter-spacing: 0.08em;
       margin: 5px 5px 5px 0;
     }
-
     .about-info-grid {
       display: grid;
       grid-template-columns: 1fr 1fr;
       gap: 16px;
       margin-top: 32px;
     }
-
     .info-item {
       background: var(--bg);
       border: 1px solid var(--border);
       border-radius: 10px;
       padding: 16px 20px;
     }
-
     .info-item .info-label {
       font-family: var(--font-mono);
       font-size: 0.65rem;
@@ -524,21 +452,17 @@
       text-transform: uppercase;
       margin-bottom: 6px;
     }
-
     .info-item .info-value {
       font-size: 0.9rem;
       color: var(--text);
       font-weight: 500;
     }
 
-    /* ============================================================
-       EXPERIENCE
-    ============================================================ */
+    /* Experience */
     .exp-timeline {
       position: relative;
       padding-left: 32px;
     }
-
     .exp-timeline::before {
       content: '';
       position: absolute;
@@ -546,12 +470,10 @@
       width: 1px;
       background: linear-gradient(180deg, var(--accent), transparent);
     }
-
     .exp-item {
       position: relative;
       margin-bottom: 56px;
     }
-
     .exp-item::before {
       content: '';
       position: absolute;
@@ -561,7 +483,6 @@
       border-radius: 50%;
       box-shadow: 0 0 12px var(--accent-glow);
     }
-
     .exp-date {
       font-family: var(--font-mono);
       font-size: 0.72rem;
@@ -570,26 +491,22 @@
       text-transform: uppercase;
       margin-bottom: 8px;
     }
-
     .exp-role {
       font-family: var(--font-display);
       font-size: 1.25rem;
       color: #fff;
       margin-bottom: 4px;
     }
-
     .exp-company {
       font-family: var(--font-mono);
       font-size: 0.82rem;
       color: var(--text-muted);
       margin-bottom: 18px;
     }
-
     .exp-points {
       list-style: none;
       padding: 0;
     }
-
     .exp-points li {
       padding: 8px 0 8px 20px;
       position: relative;
@@ -598,7 +515,6 @@
       line-height: 1.65;
       border-bottom: 1px solid rgba(255,255,255,0.04);
     }
-
     .exp-points li::before {
       content: '▸';
       position: absolute;
@@ -606,14 +522,12 @@
       color: var(--accent);
       font-size: 0.8rem;
     }
-
     .exp-tags {
       display: flex;
       flex-wrap: wrap;
       gap: 8px;
       margin-top: 16px;
     }
-
     .exp-tag {
       font-family: var(--font-mono);
       font-size: 0.68rem;
@@ -625,11 +539,8 @@
       letter-spacing: 0.05em;
     }
 
-    /* ============================================================
-       PROJECTS
-    ============================================================ */
+    /* Projects */
     #projects { background: var(--bg-card); border-top: 1px solid var(--border); border-bottom: 1px solid var(--border); }
-
     .project-card {
       background: var(--bg);
       border: 1px solid var(--border);
@@ -641,7 +552,6 @@
       transition: transform 0.35s, border-color 0.3s, box-shadow 0.3s;
       cursor: default;
     }
-
     .project-card::after {
       content: '';
       position: absolute;
@@ -652,14 +562,12 @@
       opacity: 0;
       pointer-events: none;
     }
-
     .project-card:hover::after { opacity: 1; top: -50%; left: -50%; }
     .project-card:hover {
       transform: translateY(-6px);
       border-color: rgba(29, 205, 159, 0.5);
       box-shadow: 0 20px 50px rgba(29, 205, 159, 0.1);
     }
-
     .project-badge {
       font-family: var(--font-mono);
       font-size: 0.65rem;
@@ -673,7 +581,6 @@
       letter-spacing: 0.1em;
       text-transform: uppercase;
     }
-
     .project-num {
       font-family: var(--font-display);
       font-size: 3rem;
@@ -682,7 +589,6 @@
       position: absolute;
       top: 24px; right: 28px;
     }
-
     .project-title {
       font-family: var(--font-display);
       font-size: 1.2rem;
@@ -690,27 +596,23 @@
       margin-bottom: 14px;
       line-height: 1.25;
     }
-
     .project-desc {
       font-size: 0.9rem;
       color: var(--text-mid);
       line-height: 1.75;
       margin-bottom: 20px;
     }
-
     .project-points {
       list-style: none;
       padding: 0;
       margin-bottom: 20px;
     }
-
     .project-points li {
       font-size: 0.88rem;
       color: var(--text-mid);
       padding: 5px 0 5px 18px;
       position: relative;
     }
-
     .project-points li::before {
       content: '→';
       position: absolute;
@@ -718,13 +620,11 @@
       color: var(--accent);
       font-size: 0.8rem;
     }
-
     .project-stack {
       display: flex;
       flex-wrap: wrap;
       gap: 6px;
     }
-
     .stack-tag {
       font-family: var(--font-mono);
       font-size: 0.65rem;
@@ -734,13 +634,11 @@
       padding: 4px 8px;
       border-radius: 4px;
     }
-
     .project-btn-row {
       display: flex;
       flex-wrap: wrap;
       gap: 10px;
     }
-
     .project-live-btn {
       display: inline-flex;
       align-items: center;
@@ -758,14 +656,12 @@
       transition: all 0.25s;
       background: transparent;
     }
-
     .project-live-btn:hover {
       background: var(--accent);
       color: #000;
       box-shadow: 0 0 18px var(--accent-glow);
       transform: translateY(-2px);
     }
-
     .project-code-btn {
       display: inline-flex;
       align-items: center;
@@ -783,16 +679,13 @@
       transition: all 0.25s;
       background: transparent;
     }
-
     .project-code-btn:hover {
       border-color: var(--text);
       color: #fff;
       transform: translateY(-2px);
     }
 
-    /* ============================================================
-       SKILLS
-    ============================================================ */
+    /* Skills */
     .skill-category {
       background: var(--bg-card);
       border: 1px solid var(--border);
@@ -801,12 +694,10 @@
       margin-bottom: 20px;
       transition: border-color 0.3s, transform 0.3s;
     }
-
     .skill-category:hover {
       border-color: rgba(29, 205, 159, 0.4);
       transform: translateX(4px);
     }
-
     .skill-cat-label {
       font-family: var(--font-mono);
       font-size: 0.7rem;
@@ -815,13 +706,11 @@
       text-transform: uppercase;
       margin-bottom: 16px;
     }
-
     .skill-pills {
       display: flex;
       flex-wrap: wrap;
       gap: 8px;
     }
-
     .skill-pill {
       background: var(--bg);
       border: 1px solid var(--border);
@@ -833,14 +722,12 @@
       transition: all 0.2s;
       letter-spacing: 0.03em;
     }
-
     .skill-pill:hover {
       border-color: var(--accent);
       color: var(--accent);
       background: var(--accent-dim);
       transform: translateY(-2px);
     }
-
     .cert-card {
       background: var(--bg-card);
       border: 1px solid var(--border);
@@ -852,12 +739,10 @@
       transition: border-color 0.3s, transform 0.3s;
       margin-bottom: 16px;
     }
-
     .cert-card:hover {
       border-color: rgba(29, 205, 159, 0.45);
       transform: translateX(4px);
     }
-
     .cert-icon {
       width: 40px; height: 40px;
       background: var(--accent-dim);
@@ -870,7 +755,6 @@
       font-size: 1.1rem;
       flex-shrink: 0;
     }
-
     .cert-title {
       font-family: var(--font-mono);
       font-size: 0.82rem;
@@ -878,15 +762,12 @@
       margin-bottom: 4px;
       font-weight: 700;
     }
-
     .cert-sub {
       font-size: 0.8rem;
       color: var(--text-muted);
     }
 
-    /* ============================================================
-       SOFT SKILLS
-    ============================================================ */
+    /* Soft skills */
     .soft-skill-card {
       background: var(--bg);
       border: 1px solid var(--border);
@@ -895,12 +776,10 @@
       height: 100%;
       transition: transform 0.3s, border-color 0.3s;
     }
-
     .soft-skill-card:hover {
       transform: translateY(-4px);
       border-color: rgba(29, 205, 159, 0.45);
     }
-
     .soft-skill-icon {
       width: 42px; height: 42px;
       background: var(--accent-dim);
@@ -913,7 +792,6 @@
       font-size: 1.15rem;
       margin-bottom: 16px;
     }
-
     .soft-skill-title {
       font-family: var(--font-mono);
       font-size: 0.82rem;
@@ -922,18 +800,14 @@
       letter-spacing: 0.02em;
     }
 
-    /* ============================================================
-       CONTACT
-    ============================================================ */
+    /* Contact */
     #contact { background: var(--bg-card); border-top: 1px solid var(--border); }
-
     .contact-form {
       background: var(--bg);
       border: 1px solid var(--border);
       border-radius: 16px;
       padding: 40px;
     }
-
     .form-label {
       font-family: var(--font-mono);
       font-size: 0.72rem;
@@ -942,7 +816,6 @@
       text-transform: uppercase;
       margin-bottom: 8px;
     }
-
     .form-control {
       background: var(--bg-card) !important;
       border: 1.5px solid rgba(255,255,255,0.1) !important;
@@ -953,14 +826,12 @@
       font-size: 0.95rem !important;
       transition: border-color 0.25s, box-shadow 0.25s !important;
     }
-
     .form-control::placeholder { color: var(--text-muted) !important; }
     .form-control:focus {
       border-color: var(--accent) !important;
       box-shadow: 0 0 0 3px rgba(29, 205, 159, 0.12) !important;
       outline: none !important;
     }
-
     .btn-send {
       background: var(--accent);
       color: #000;
@@ -976,18 +847,15 @@
       transition: all 0.3s;
       cursor: pointer;
     }
-
     .btn-send:hover {
       box-shadow: 0 0 28px var(--accent-glow);
       transform: translateY(-2px);
     }
-
     .contact-links {
       display: flex;
       flex-direction: column;
       gap: 20px;
     }
-
     .contact-link-item {
       display: flex;
       align-items: center;
@@ -1000,14 +868,12 @@
       color: var(--text-mid);
       transition: all 0.28s;
     }
-
     .contact-link-item:hover {
       border-color: var(--accent);
       color: var(--accent);
       transform: translateX(6px);
       background: var(--accent-dim);
     }
-
     .contact-link-item .c-icon {
       width: 40px; height: 40px;
       background: var(--accent-dim);
@@ -1020,7 +886,6 @@
       color: var(--accent);
       flex-shrink: 0;
     }
-
     .c-label {
       font-family: var(--font-mono);
       font-size: 0.65rem;
@@ -1029,54 +894,44 @@
       text-transform: uppercase;
       margin-bottom: 3px;
     }
-
     .c-value {
       font-size: 0.9rem;
       color: var(--text);
     }
 
-    /* ============================================================
-       FOOTER
-    ============================================================ */
+    /* Footer */
     footer {
       background: var(--bg);
       border-top: 1px solid var(--border);
       padding: 40px 0;
       text-align: center;
     }
-
     .footer-name {
       font-family: var(--font-display);
       font-size: 1.4rem;
       color: var(--accent);
       margin-bottom: 12px;
     }
-
     .footer-text {
       font-family: var(--font-mono);
       font-size: 0.72rem;
       color: var(--text-muted);
       letter-spacing: 0.1em;
     }
-
     .footer-social {
       display: flex;
       justify-content: center;
       gap: 16px;
       margin: 24px 0;
     }
-
     .footer-social a {
       color: var(--text-muted);
       font-size: 1.1rem;
       transition: color 0.25s, transform 0.25s;
     }
-
     .footer-social a:hover { color: var(--accent); transform: translateY(-3px); }
 
-    /* ============================================================
-       BACK TO TOP
-    ============================================================ */
+    /* Back to top */
     #back-top {
       position: fixed;
       bottom: 32px; right: 32px;
@@ -1096,30 +951,23 @@
       z-index: 1000;
       box-shadow: 0 4px 20px rgba(29, 205, 159, 0.35);
     }
-
     #back-top.visible { opacity: 1; transform: translateY(0); }
     #back-top:hover { transform: translateY(-3px); box-shadow: 0 8px 28px rgba(29, 205, 159, 0.5); }
 
-    /* ============================================================
-       REVEAL ANIMATIONS
-    ============================================================ */
+    /* Reveal */
     .reveal {
       opacity: 0;
       transform: translateY(28px);
       transition: opacity 0.7s cubic-bezier(.16,1,.3,1), transform 0.7s cubic-bezier(.16,1,.3,1);
     }
     .reveal.visible { opacity: 1; transform: translateY(0); }
-
     .stagger.visible { transition-delay: var(--d, 0s); }
-
     @media (prefers-reduced-motion: reduce) {
       .reveal, .reveal.visible { transition: none !important; opacity: 1 !important; transform: none !important; }
       .loader-letter { transition: none !important; }
     }
 
-    /* ============================================================
-       RESPONSIVE
-    ============================================================ */
+    /* Responsive */
     @media (max-width: 768px) {
       .about-info-grid { grid-template-columns: 1fr; }
       .hero-stats { flex-direction: row; flex-wrap: wrap; }
@@ -1127,9 +975,7 @@
       .contact-form { padding: 24px; }
     }
 
-    /* ============================================================
-       SCROLLBAR
-    ============================================================ */
+    /* Scrollbar */
     ::-webkit-scrollbar { width: 6px; }
     ::-webkit-scrollbar-track { background: var(--bg); }
     ::-webkit-scrollbar-thumb { background: var(--accent); border-radius: 99px; }
@@ -1169,9 +1015,7 @@
   </div>
 </nav>
 
-<!-- ===============================================================
-     HERO
-================================================================ -->
+<!-- ===================== HERO ===================== -->
 <section id="hero">
   <canvas id="hero-canvas"></canvas>
   <div class="container position-relative" style="z-index:2">
@@ -1184,11 +1028,11 @@
         <h1 class="hero-heading reveal">
           Hey, I'm<br><span class="name-accent">Ishraq Saifi</span>
         </h1>
-        <div class="hero-subtitle reveal">Software Developer</div>
+        <div class="hero-subtitle reveal">Software Engineer</div>
         <p class="hero-desc reveal">
           I build <strong>production-grade backend & full-stack systems</strong>.<br>
-          15+ RESTful APIs shipped at Vinove Software, cutting payload size by 35%.<br>
-          Java · Spring Boot · React · AWS.<br>
+          1+ year experience · 15+ RESTful APIs · 35% payload reduction · <br>
+          Java · Spring Boot · React · AWS · Microservices.<br>
           Open to <strong>Remote & Delhi-NCR</strong>.
         </p>
         <div class="d-flex flex-wrap gap-3 reveal">
@@ -1200,16 +1044,16 @@
           </button>
         </div>
         <div class="social-icons reveal">
-          <a href="https://linkedin.com/in/ishraq-saifi" target="_blank" class="social-icon" data-tooltip="LinkedIn">
+          <a href="https://linkedin.com/in/ishraqsaifi" target="_blank" class="social-icon" data-tooltip="LinkedIn">
             <i class="bi bi-linkedin"></i>
           </a>
-          <a href="https://github.com/ISHRAQ01" target="_blank" class="social-icon" data-tooltip="GitHub">
+          <a href="https://github.com/Ishraqsaifi" target="_blank" class="social-icon" data-tooltip="GitHub">
             <i class="bi bi-github"></i>
           </a>
-          <a href="https://leetcode.com" target="_blank" class="social-icon" data-tooltip="LeetCode 150+">
+          <a href="https://leetcode.com/u/ishraqsaifi/" target="_blank" class="social-icon" data-tooltip="LeetCode 150+">
             <i class="bi bi-code-slash"></i>
           </a>
-          <a href="mailto:ishraq0641@gmail.com" class="social-icon" data-tooltip="Email Me">
+          <a href="mailto:ishraq.saifis@gmail.com" class="social-icon" data-tooltip="Email Me">
             <i class="bi bi-envelope"></i>
           </a>
         </div>
@@ -1239,9 +1083,7 @@
   </div>
 </section>
 
-<!-- ===============================================================
-     ABOUT
-================================================================ -->
+<!-- ===================== ABOUT ===================== -->
 <section id="about">
   <div class="container">
     <div class="row g-5 align-items-start">
@@ -1250,13 +1092,13 @@
         <h2 class="section-title reveal">About Me</h2>
         <div class="section-divider reveal"></div>
         <p class="about-text reveal">
-          I'm a <strong>Software Developer</strong> based in Delhi-NCR, India, with a B.Tech in Computer Science (Nov 2021 – Nov 2025, CGPA 8.26). I specialize in building scalable backend systems and full-stack applications that solve real business problems.
+          I'm a <strong>Software Engineer</strong> based in Delhi-NCR, India, with a B.Tech in Computer Science (Nov 2021 – Nov 2025, CGPA 8.26). I specialize in building scalable backend systems, microservices, and full-stack applications that solve real business problems.
         </p>
         <p class="about-text reveal">
-          At <strong>Vinove Software</strong>, I've shipped 15+ RESTful APIs handling 200+ concurrent requests, accelerated SQL queries by 40%, and refactored 2,000+ lines of legacy code using SOLID principles — while shipping 100% of committed features across 6 sprints.
+          At <strong>Vinove Software</strong>, I've shipped 15+ RESTful APIs handling 200+ concurrent requests, accelerated SQL queries by 40%, and refactored 2,000+ lines of legacy code using SOLID principles — delivering 100% of committed features across 6 sprints.
         </p>
         <p class="about-text reveal">
-          I hold an <strong>AWS Certified</strong> badge, have published research on Ethereum in property management, and I'm always open to challenging projects in Remote or Delhi-NCR environments.
+          I hold an <strong>AWS Certified</strong> badge, published research on Ethereum in property management, and I'm always open to challenging projects in Remote or Delhi-NCR environments.
         </p>
         <div class="d-flex flex-wrap reveal" style="margin-top: 16px;">
           <span class="about-pill"><i class="bi bi-geo-alt"></i> Delhi-NCR, India</span>
@@ -1269,7 +1111,7 @@
         <div class="about-info-grid reveal">
           <div class="info-item">
             <div class="info-label">Email</div>
-            <div class="info-value">ishraq0641@gmail.com</div>
+            <div class="info-value">ishraq.saifis@gmail.com</div>
           </div>
           <div class="info-item">
             <div class="info-label">Phone</div>
@@ -1297,9 +1139,7 @@
   </div>
 </section>
 
-<!-- ===============================================================
-     EXPERIENCE
-================================================================ -->
+<!-- ===================== EXPERIENCE ===================== -->
 <section id="experience">
   <div class="container">
     <div class="section-label reveal">Career</div>
@@ -1310,26 +1150,27 @@
         <div class="exp-timeline">
 
           <div class="exp-item reveal">
-            <div class="exp-date">May 2025 – July 2026</div>
-            <div class="exp-role">Software Developer</div>
-            <div class="exp-company">Vinove Software · Greater Noida, India</div>
+            <div class="exp-date">Jul 2025 – Present 2026</div>
+            <div class="exp-role">Software Engineer</div>
+            <div class="exp-company">Vinove Software and Services · Noida, India</div>
             <ul class="exp-points">
-              <li>Led backend-frontend integration for 3 major features, architecting optimised DTOs that minimised API payload size by 35% and improved data transfer efficiency</li>
-              <li>Designed and deployed 15+ RESTful APIs using Spring Boot 3.x, handling 200+ concurrent requests with an average response time of 200ms</li>
-              <li>Accelerated 10+ SQL queries using indexing and query restructuring, reducing execution time from 1.2s to under 100ms and improving overall system performance by 40%</li>
-              <li>Integrated JWT-based authentication and role-based access control using Spring Security, securing 15+ API endpoints across the application</li>
-              <li>Refactored 2,000+ lines of legacy code using SOLID principles, enhancing maintainability and reducing technical debt by 40%</li>
-              <li>Collaborated with 4 cross-functional teams (Product, QA, Design) across 6 sprints, delivering 100% of committed features on time</li>
+              <li>Developed Spring Boot + Hibernate REST endpoints using custom DTO patterns to reduce data transfer, resulting in 35% smaller API responses and improved client performance</li>
+              <li>Kept API latency under 200 ms in a microservices architecture by optimizing the request-response chain through service logic and inter-service communications</li>
+              <li>Optimized database queries through execution plan analysis and B-Tree indexing, cutting average response time from 1.2 s to under 0.1 s for PostgreSQL and MySQL</li>
+              <li>Implemented MongoDB as an asynchronous storage repository for event logging, decoupling storage operations from primary databases and improving write throughput</li>
+              <li>Designed JWT security and Spring Security-based Role-Based Access Controls for 15+ backend services, ensuring secure and granular access management</li>
+              <li>Automated deployment using GitHub Actions for Dockerized services, accelerating release cycles and reducing manual intervention</li>
             </ul>
             <div class="exp-tags">
               <span class="exp-tag">Java 17</span>
-              <span class="exp-tag">Spring Boot 3.x</span>
+              <span class="exp-tag">Spring Boot</span>
               <span class="exp-tag">Spring Security</span>
               <span class="exp-tag">JWT / RBAC</span>
               <span class="exp-tag">PostgreSQL</span>
-              <span class="exp-tag">Postman</span>
-              <span class="exp-tag">Swagger</span>
-              <span class="exp-tag">SOLID</span>
+              <span class="exp-tag">MongoDB</span>
+              <span class="exp-tag">Redis</span>
+              <span class="exp-tag">Docker</span>
+              <span class="exp-tag">GitHub Actions</span>
             </div>
           </div>
 
@@ -1339,9 +1180,7 @@
   </div>
 </section>
 
-<!-- ===============================================================
-     PROJECTS
-================================================================ -->
+<!-- ===================== PROJECTS ===================== -->
 <section id="projects">
   <div class="container">
     <div class="section-label reveal">Work</div>
@@ -1355,12 +1194,11 @@
           <div class="project-num">01</div>
           <div class="project-badge">🟢 Live</div>
           <h3 class="project-title">AI Assessment Creator</h3>
-          <p class="project-desc">AI-powered question paper generator serving teachers, with real-time WebSocket updates delivering 3x faster exam creation.</p>
+          <p class="project-desc">AI-powered question paper generator for teachers — 3x faster exam creation via real-time WebSocket updates.</p>
           <ul class="project-points">
-            <li>Groq LLM with automatic model failover logic</li>
-            <li>BullMQ + Redis job queues supporting 50K+ monthly operations</li>
-            <li>Real-time WebSocket updates to clients</li>
-            <li>5+ question types with one-click PDF export</li>
+            <li>Engineered with Spring Boot, BullMQ & Redis, handling 50K+ operations/month with zero downtime</li>
+            <li>Improved live generation reliability with WebSocket tracking and auto model failover</li>
+            <li>Supports 5+ question types with MongoDB schema and one-click PDF export</li>
           </ul>
           <div class="project-stack" style="margin-bottom:20px;">
             <span class="stack-tag">Next.js</span>
@@ -1371,8 +1209,6 @@
             <span class="stack-tag">BullMQ</span>
             <span class="stack-tag">WebSocket</span>
             <span class="stack-tag">Groq API</span>
-            <span class="stack-tag">Tailwind CSS</span>
-            <span class="stack-tag">Docker</span>
           </div>
           <div style="margin-top:auto;" class="project-btn-row">
             <a href="https://vedaai-toolkit.vercel.app" target="_blank" class="project-live-btn">
@@ -1390,12 +1226,11 @@
           <div class="project-num">02</div>
           <div class="project-badge">🟢 Live</div>
           <h3 class="project-title">Enterprise Warehouse Management System</h3>
-          <p class="project-desc">Cloud-based inventory management system with real-time tracking and ACID-compliant transactions.</p>
+          <p class="project-desc">Cloud-based inventory management with real-time tracking and ACID-compliant transactions.</p>
           <ul class="project-points">
-            <li>Eliminated manual data entry by 90%, training time by 50%</li>
-            <li>JWT auth with 24-hour expiration & role-based access control</li>
-            <li>ACID-compliant transactions with JPA/Hibernate</li>
-            <li>Automated low-stock alerts and inventory forecasting</li>
+            <li>Designed centralized distributed inventory tracking, reducing manual data entry by 90% and increasing user onboarding speed by 2x</li>
+            <li>Led automated low-stock alerts and predictive replenishment within React.js dashboard to eliminate stockouts</li>
+            <li>JWT auth with 24-hour expiry & role-based access control</li>
           </ul>
           <div class="project-stack" style="margin-bottom:20px;">
             <span class="stack-tag">Java Spring Boot</span>
@@ -1419,13 +1254,12 @@
         <div class="project-card reveal h-100" style="display:flex;flex-direction:column;">
           <div class="project-num">03</div>
           <div class="project-badge">🔧 Backend</div>
-          <h3 class="project-title">Fleet Management & Route Optimisation Engine</h3>
-          <p class="project-desc">Centralised fleet management REST API with vehicle-driver assignment and delivery state machines.</p>
+          <h3 class="project-title">Fleet Management & Route Optimisation</h3>
+          <p class="project-desc">Centralised fleet REST API with vehicle-driver assignment and delivery state machines.</p>
           <ul class="project-points">
-            <li>OSRM / Google Distance Matrix API integration</li>
-            <li>Algorithmic multi-stop route sequencing</li>
-            <li>Vehicle-driver lifecycle state machines</li>
-            <li>Cut total travel distance per dispatch by 15%</li>
+            <li>Developed Java-based Nearest Neighbor Algorithm + OSRM integration, reducing fleet travel distance per dispatch by 15%</li>
+            <li>Migrated to non-blocking reactive model with Spring WebFlux, reducing order lifecycle state complexity by 35%</li>
+            <li>Vehicle-driver lifecycle state machines and multi-stop route sequencing</li>
           </ul>
           <div class="project-stack">
             <span class="stack-tag">Spring Boot</span>
@@ -1447,9 +1281,7 @@
   </div>
 </section>
 
-<!-- ===============================================================
-     SKILLS
-================================================================ -->
+<!-- ===================== SKILLS ===================== -->
 <section id="skills">
   <div class="container">
     <div class="section-label reveal">Expertise</div>
@@ -1467,6 +1299,7 @@
             <span class="skill-pill">Spring Data JPA</span>
             <span class="skill-pill">Hibernate</span>
             <span class="skill-pill">Spring Security</span>
+            <span class="skill-pill">Spring WebFlux</span>
             <span class="skill-pill">RESTful APIs</span>
             <span class="skill-pill">C</span>
             <span class="skill-pill">C++</span>
@@ -1475,49 +1308,39 @@
         </div>
 
         <div class="skill-category reveal">
-          <div class="skill-cat-label">Databases & Storage</div>
+          <div class="skill-cat-label">Databases & Caching</div>
           <div class="skill-pills">
             <span class="skill-pill">MySQL</span>
             <span class="skill-pill">PostgreSQL</span>
             <span class="skill-pill">MongoDB</span>
             <span class="skill-pill">Redis</span>
             <span class="skill-pill">BullMQ</span>
+            <span class="skill-pill">Query Optimization</span>
           </div>
         </div>
 
         <div class="skill-category reveal">
-          <div class="skill-cat-label">Frontend Tools & Frameworks</div>
+          <div class="skill-cat-label">Frontend & Web</div>
           <div class="skill-pills">
-            <span class="skill-pill">HTML</span>
-            <span class="skill-pill">CSS</span>
-            <span class="skill-pill">Tailwind CSS</span>
             <span class="skill-pill">React.js</span>
-            <span class="skill-pill">JavaScript</span>
-            <span class="skill-pill">Express.js</span>
+            <span class="skill-pill">Next.js</span>
+            <span class="skill-pill">Node.js</span>
+            <span class="skill-pill">HTML5</span>
+            <span class="skill-pill">CSS3</span>
+            <span class="skill-pill">Tailwind CSS</span>
           </div>
         </div>
 
         <div class="skill-category reveal">
-          <div class="skill-cat-label">Cloud</div>
+          <div class="skill-cat-label">DevOps & Cloud</div>
           <div class="skill-pills">
-            <span class="skill-pill">AWS EC2</span>
-            <span class="skill-pill">AWS S3</span>
-            <span class="skill-pill">AWS RDS</span>
-            <span class="skill-pill">AWS IAM</span>
             <span class="skill-pill">Docker</span>
-            <span class="skill-pill">Vercel</span>
-            <span class="skill-pill">Render</span>
-          </div>
-        </div>
-
-        <div class="skill-category reveal">
-          <div class="skill-cat-label">Build & Testing</div>
-          <div class="skill-pills">
+            <span class="skill-pill">Kubernetes</span>
+            <span class="skill-pill">Docker Compose</span>
+            <span class="skill-pill">AWS (EC2, S3)</span>
+            <span class="skill-pill">GitHub Actions</span>
+            <span class="skill-pill">CI/CD</span>
             <span class="skill-pill">Maven</span>
-            <span class="skill-pill">JUnit</span>
-            <span class="skill-pill">Mockito</span>
-            <span class="skill-pill">Postman</span>
-            <span class="skill-pill">Swagger</span>
           </div>
         </div>
 
@@ -1529,10 +1352,9 @@
             <span class="skill-pill">Transaction Management</span>
             <span class="skill-pill">WebSocket</span>
             <span class="skill-pill">Message Queues</span>
-            <span class="skill-pill">Exception Handling</span>
+            <span class="skill-pill">SOLID Principles</span>
+            <span class="skill-pill">Design Patterns</span>
             <span class="skill-pill">Agile / Scrum</span>
-            <span class="skill-pill">SDLC</span>
-            <span class="skill-pill">CI/CD</span>
           </div>
         </div>
 
@@ -1570,9 +1392,7 @@
   </div>
 </section>
 
-<!-- ===============================================================
-     SOFT SKILLS
-================================================================ -->
+<!-- ===================== SOFT SKILLS ===================== -->
 <section id="soft-skills" style="background: var(--bg-card); border-top: 1px solid var(--border); border-bottom: 1px solid var(--border);">
   <div class="container">
     <div class="section-label reveal">Beyond the Code</div>
@@ -1607,9 +1427,7 @@
   </div>
 </section>
 
-<!-- ===============================================================
-     CONTACT
-================================================================ -->
+<!-- ===================== CONTACT ===================== -->
 <section id="contact">
   <div class="container">
     <div class="section-label reveal">Get In Touch</div>
@@ -1623,11 +1441,11 @@
         </p>
 
         <div class="contact-links reveal">
-          <a href="mailto:ishraq0641@gmail.com" class="contact-link-item">
+          <a href="mailto:ishraq.saifis@gmail.com" class="contact-link-item">
             <div class="c-icon"><i class="bi bi-envelope-fill"></i></div>
             <div>
               <div class="c-label">Email</div>
-              <div class="c-value">ishraq0641@gmail.com</div>
+              <div class="c-value">ishraq.saifis@gmail.com</div>
             </div>
           </a>
           <a href="tel:+917982241430" class="contact-link-item">
@@ -1637,18 +1455,18 @@
               <div class="c-value">+91-7982241430</div>
             </div>
           </a>
-          <a href="https://linkedin.com/in/ishraq-saifi" target="_blank" class="contact-link-item">
+          <a href="https://linkedin.com/in/ishraqsaifi" target="_blank" class="contact-link-item">
             <div class="c-icon"><i class="bi bi-linkedin"></i></div>
             <div>
               <div class="c-label">LinkedIn</div>
-              <div class="c-value">linkedin.com/in/ishraq-saifi</div>
+              <div class="c-value">linkedin.com/in/ishraqsaifi</div>
             </div>
           </a>
-          <a href="https://github.com/ISHRAQ01" target="_blank" class="contact-link-item">
+          <a href="https://github.com/Ishraqsaifi" target="_blank" class="contact-link-item">
             <div class="c-icon"><i class="bi bi-github"></i></div>
             <div>
               <div class="c-label">GitHub</div>
-              <div class="c-value">github.com/ISHRAQ01</div>
+              <div class="c-value">github.com/Ishraqsaifi</div>
             </div>
           </a>
         </div>
@@ -1677,19 +1495,17 @@
   </div>
 </section>
 
-<!-- ===============================================================
-     FOOTER
-================================================================ -->
+<!-- ===================== FOOTER ===================== -->
 <footer>
   <div class="container">
     <div class="footer-name">Ishraq Saifi</div>
     <div class="footer-social">
-      <a href="https://linkedin.com/in/ishraq-saifi" target="_blank"><i class="bi bi-linkedin"></i></a>
-      <a href="https://github.com/ISHRAQ01" target="_blank"><i class="bi bi-github"></i></a>
-      <a href="mailto:ishraq0641@gmail.com"><i class="bi bi-envelope-fill"></i></a>
+      <a href="https://linkedin.com/in/ishraqsaifi" target="_blank"><i class="bi bi-linkedin"></i></a>
+      <a href="https://github.com/Ishraqsaifi" target="_blank"><i class="bi bi-github"></i></a>
+      <a href="mailto:ishraq.saifis@gmail.com"><i class="bi bi-envelope-fill"></i></a>
     </div>
     <div class="footer-text">
-      © 2026 Ishraq Saifi · Software Developer · Delhi-NCR, India
+      © 2026 Ishraq Saifi · Software Engineer · Delhi-NCR, India
     </div>
   </div>
 </footer>
@@ -1703,9 +1519,7 @@
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
 
 <script>
-/* ============================================================
-   LOADER
-============================================================ */
+/* ===================== LOADER ===================== */
 window.addEventListener('DOMContentLoaded', () => {
   const letters = document.querySelectorAll('.loader-letter');
   const bar = document.getElementById('loader-bar');
@@ -1731,9 +1545,7 @@ window.addEventListener('DOMContentLoaded', () => {
   }, 2400);
 });
 
-/* ============================================================
-   HERO WAVE LINES CANVAS
-============================================================ */
+/* ===================== HERO CANVAS ===================== */
 const canvas = document.getElementById('hero-canvas');
 const ctx = canvas.getContext('2d');
 let waves = [];
@@ -1778,9 +1590,7 @@ initWaves();
 drawWaves(0);
 window.addEventListener('resize', () => { resizeCanvas(); initWaves(); });
 
-/* ============================================================
-   SCROLL PROGRESS
-============================================================ */
+/* ===================== SCROLL PROGRESS ===================== */
 window.addEventListener('scroll', () => {
   const scrolled = window.scrollY;
   const total = document.documentElement.scrollHeight - window.innerHeight;
@@ -1790,9 +1600,7 @@ window.addEventListener('scroll', () => {
   scrolled > 400 ? btn.classList.add('visible') : btn.classList.remove('visible');
 });
 
-/* ============================================================
-   REVEAL ON SCROLL (staggered)
-============================================================ */
+/* ===================== REVEAL ON SCROLL ===================== */
 function initReveal() {
   const groups = {};
   document.querySelectorAll('.reveal').forEach(el => {
@@ -1817,9 +1625,7 @@ function initReveal() {
   document.querySelectorAll('.reveal').forEach(el => observer.observe(el));
 }
 
-/* ============================================================
-   PROJECT CARD TILT
-============================================================ */
+/* ===================== PROJECT CARD TILT ===================== */
 document.querySelectorAll('.project-card').forEach(card => {
   card.addEventListener('mousemove', (e) => {
     const r = card.getBoundingClientRect();
@@ -1830,9 +1636,7 @@ document.querySelectorAll('.project-card').forEach(card => {
   card.addEventListener('mouseleave', () => { card.style.transform = ''; });
 });
 
-/* ============================================================
-   CONTACT FORM
-============================================================ */
+/* ===================== CONTACT FORM ===================== */
 function sendMessage() {
   const name = document.getElementById('cf-name').value.trim();
   const email = document.getElementById('cf-email').value.trim();
@@ -1843,12 +1647,10 @@ function sendMessage() {
   }
   const subject = encodeURIComponent(`Portfolio Inquiry from ${name}`);
   const body = encodeURIComponent(`Hi Ishraq,\n\nMy name is ${name} (${email}).\n\n${msg}`);
-  window.location.href = `mailto:ishraq0641@gmail.com?subject=${subject}&body=${body}`;
+  window.location.href = `mailto:ishraq.saifis@gmail.com?subject=${subject}&body=${body}`;
 }
 
-/* ============================================================
-   INSTANT RESUME DOWNLOAD (jsPDF)
-============================================================ */
+/* ===================== INSTANT RESUME (jsPDF) ===================== */
 function generateResume() {
   const btn = document.getElementById('dl-btn');
   const txt = document.getElementById('dl-btn-text');
@@ -1885,15 +1687,15 @@ function generateResume() {
     doc.setFont('helvetica', 'normal');
     doc.setFontSize(10);
     doc.setTextColor(...accent);
-    doc.text('Software Developer', M + 4, 26);
+    doc.text('Software Engineer', M + 4, 26);
 
     doc.setFontSize(7.5);
     doc.setTextColor(...lgray);
     const contacts = [
-      'ishraq0641@gmail.com',
+      'ishraq.saifis@gmail.com',
       '+91-7982241430',
-      'github.com/ISHRAQ01',
-      'linkedin.com/in/ishraq-saifi',
+      'github.com/Ishraqsaifi',
+      'linkedin.com/in/ishraqsaifi',
       'Delhi NCR, India',
     ];
     doc.text(contacts.join('   |   '), M + 4, 33);
@@ -1991,32 +1793,32 @@ function generateResume() {
 
     section('Professional Experience');
 
-    jobHeader('Software Developer', 'Vinove Software · Greater Noida, India', 'May 2025 – July 2026');
-    bullet('Led backend-frontend integration for 3 major features; optimised DTOs cut API payload size by 35%');
-    bullet('Designed and deployed 15+ RESTful APIs (Spring Boot 3.x), handling 200+ concurrent requests, ~200ms avg response');
-    bullet('Accelerated 10+ SQL queries via indexing/restructuring: 1.2s to under 100ms, +40% system performance');
-    bullet('Integrated JWT auth + RBAC with Spring Security across 15+ API endpoints');
-    bullet('Refactored 2,000+ lines of legacy code using SOLID principles, cutting technical debt by 40%');
-    bullet('Collaborated across 4 cross-functional teams over 6 sprints, delivering 100% of committed features');
-    tagLine(['Java 17', 'Spring Boot', 'Spring Security', 'PostgreSQL', 'Postman', 'Swagger']);
-    y += 2;
+    jobHeader('Software Engineer', 'Vinove Software and Services · Noida, India', 'Jul 2025 – Present 2026');
+    bullet('Developed Spring Boot + Hibernate REST endpoints; DTO patterns cut API payload by 35%');
+    bullet('Kept API latency under 200ms in microservices architecture via request-chain optimisation');
+    bullet('Optimized PostgreSQL/MySQL queries: 1.2s to under 0.1s using B-tree indexing and plan analysis');
+    bullet('Implemented MongoDB for async event logging, decoupling storage from primary databases');
+    bullet('Designed JWT security + RBAC for 15+ backend services using Spring Security');
+    bullet('Automated deployment with GitHub Actions for Dockerized services, accelerating release cycles');
+    tagLine(['Java 17', 'Spring Boot', 'Spring Security', 'PostgreSQL', 'MongoDB', 'Redis', 'Docker', 'GitHub Actions']);
 
     section('Featured Projects');
 
     projHeader('AI Assessment Creator', 'LIVE');
-    bodyText('AI-powered question paper generator for teachers — 3x faster exam creation via real-time WebSocket updates.');
-    bullet('Groq LLM with automatic model failover · BullMQ + Redis queues supporting 50K+ monthly ops');
-    bullet('5+ question types (MCQ, Numerical, Diagram-based) · one-click PDF export');
-    tagLine(['Next.js', 'TypeScript', 'Express', 'MongoDB', 'Redis', 'BullMQ', 'WebSocket', 'Docker']);
+    bodyText('AI-powered question paper generator — 3x faster exam creation via real-time WebSocket updates.');
+    bullet('Spring Boot, BullMQ & Redis: 50K+ operations/month with zero downtime');
+    bullet('WebSocket tracking + auto model failover for Next.js workflows');
+    bullet('5+ question types with MongoDB schema and one-click PDF export');
+    tagLine(['Next.js', 'TypeScript', 'Express', 'MongoDB', 'Redis', 'BullMQ', 'WebSocket']);
 
     projHeader('Enterprise Warehouse Management System', 'LIVE');
-    bullet('Cloud-based WMS · real-time inventory tracking · ACID-compliant transactions');
-    bullet('Eliminated manual data entry by 90%, training time by 50% · JWT auth with 24-hour expiry');
+    bullet('Centralised distributed inventory tracking, reduced manual data entry by 90%, onboarding speed 2x');
+    bullet('Automated low-stock alerts and predictive replenishment in React.js dashboard');
     tagLine(['Java Spring Boot', 'JPA/Hibernate', 'PostgreSQL', 'React.js']);
 
-    projHeader('Fleet Management & Route Optimisation Engine', 'BACKEND');
-    bullet('Centralised fleet REST API · vehicle-driver assignment and delivery state machines');
-    bullet('OSRM/Google Distance Matrix integration cut travel distance per dispatch by 15%');
+    projHeader('Fleet Management & Route Optimisation', 'BACKEND');
+    bullet('Java Nearest Neighbor + OSRM integration cut travel distance per dispatch by 15%');
+    bullet('Migrated to reactive non-blocking model with Spring WebFlux, reduced state complexity by 35%');
     tagLine(['Spring Boot', 'Spring WebFlux', 'SQL', 'Swagger', 'Docker']);
 
     section('Tech Stack');
@@ -2024,10 +1826,9 @@ function generateResume() {
     const skills = [
       ['Languages',   'Java 17 · Spring Boot · Spring Security · C · C++ · Python'],
       ['Databases',   'MySQL · PostgreSQL · MongoDB · Redis · BullMQ'],
-      ['Frontend',    'HTML · CSS · Tailwind CSS · React.js · JavaScript · Express.js'],
-      ['Cloud',       'AWS (EC2, S3, RDS, IAM) · Docker · Vercel · Render'],
-      ['Testing',     'Maven · JUnit · Mockito · Postman · Swagger'],
-      ['Concepts',    'Microservices · JWT/OAuth · Transaction Mgmt · WebSocket · Message Queues · Agile/SDLC · CI/CD'],
+      ['Frontend',    'React.js · Next.js · Node.js · HTML5 · CSS3 · Tailwind CSS'],
+      ['Cloud/DevOps','AWS (EC2, S3) · Docker · Kubernetes · GitHub Actions · CI/CD'],
+      ['Concepts',    'Microservices · JWT/OAuth · Transaction Mgmt · WebSocket · Message Queues · SOLID · Agile'],
     ];
     skills.forEach(([cat, val]) => {
       doc.setFont('helvetica', 'bold');
@@ -2040,7 +1841,6 @@ function generateResume() {
       doc.text(lines, M + 30, y);
       y += lines.length * 4.2 + 2;
     });
-    y += 2;
 
     section('Education & Achievements');
 
@@ -2069,7 +1869,7 @@ function generateResume() {
     doc.setFont('helvetica', 'normal');
     doc.setFontSize(7);
     doc.setTextColor(...lgray);
-    doc.text('ishraq0641@gmail.com   |   +91-7982241430   |   github.com/ISHRAQ01   |   linkedin.com/in/ishraq-saifi', W / 2, 291, { align: 'center' });
+    doc.text('ishraq.saifis@gmail.com   |   +91-7982241430   |   github.com/Ishraqsaifi   |   linkedin.com/in/ishraqsaifi', W / 2, 291, { align: 'center' });
 
     doc.save('Ishraq_Saifi_Resume.pdf');
 
@@ -2080,9 +1880,7 @@ function generateResume() {
   }, 100);
 }
 
-/* ============================================================
-   ACTIVE NAV LINK ON SCROLL
-============================================================ */
+/* ===================== ACTIVE NAV LINK ===================== */
 const sections = document.querySelectorAll('section[id]');
 const navLinks = document.querySelectorAll('.nav-link');
 
